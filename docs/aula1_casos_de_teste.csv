@@ -1,0 +1,33 @@
+ID;Regra;Pré-condição;Passos;Resultado esperado;Resultado obtido;Passou?
+CT01;5;Nenhuma;Calcular o próximo dia útil de 10/10/2026 (sábado);12/10/2026;12/10/2026;Sim
+CT02;1;Nenhuma;Cadastrar título a pagar com valor 0,00, vencimento 10/11/2026, 1 parcela (título nº 1);Cadastro rejeitado: valor deve ser maior que zero;Título cadastrado com valor 0.00, saldo 0.00 e status aberto;Não
+CT03;1;Nenhuma;Cadastrar título a pagar com valor -50,00, vencimento 10/11/2026 (título nº 2);Cadastro rejeitado: valor deve ser maior que zero;Título cadastrado com valor -50.00 e saldo -50.00;Não
+CT04;1;Nenhuma;Cadastrar título a pagar com valor 0,01 (menor valor válido);Cadastro aceito;Cadastro aceito;Sim
+CT05;1;Nenhuma;Cadastrar título com descrição vazia;Cadastro rejeitado com mensagem;Rejeitado com a mensagem A descrição é obrigatória.;Sim
+CT06;1;Nenhuma;Cadastrar título com descrição contendo só espaços;Cadastro rejeitado;Rejeitado;Sim
+CT07;1;Nenhuma;Enviar o formulário com tipo outro (diferente de pagar e receber);Cadastro rejeitado;Rejeitado;Sim
+CT08;6;Nenhuma;Cadastrar 100,00 em 3 parcelas com vencimento 10/11/2026 (títulos nº 5 a 7);Parcelas 33,34 / 33,33 / 33,33 (soma 100,00);Parcelas 33,33 / 33,33 / 33,33 (soma 99,99);Não
+CT09;6;Nenhuma;Cadastrar 10,00 em 3 parcelas (títulos nº 8 a 10);Parcelas 3,34 / 3,33 / 3,33 (soma 10,00);Parcelas 3,33 / 3,33 / 3,33 (soma 9,99);Não
+CT10;6;Nenhuma;Cadastrar 100,00 em 6 parcelas (títulos nº 11 a 16);Primeira parcela 16,70 e as demais 16,66 (soma 100,00);Seis parcelas de 16,66 (soma 99,96);Não
+CT11;6;Nenhuma;Conferir os vencimentos das 6 parcelas do CT10 (primeiro vencimento 10/11/2026);10/11/2026, 10/12/2026, 09/01/2027, 08/02/2027, 10/03/2027 e 09/04/2027 (30 em 30 dias);Iguais ao esperado;Sim
+CT12;6;Nenhuma;Cadastrar título com 0 parcelas;Cadastro rejeitado;Rejeitado com a mensagem A quantidade de parcelas deve ser pelo menos 1.;Sim
+CT13;6;Nenhuma;Cadastrar título com -1 parcelas;Cadastro rejeitado;Rejeitado com a mesma mensagem;Sim
+CT14;4;Título a pagar de 1.000,00 com vencimento 10/11/2026 (terça), aberto (nº 17);Registrar baixa de 1.000,00 em 10/11/2026 (dia do vencimento);Encargos 0,00;Encargos 20,00;Não
+CT15;4;Título de 1.000,00 com vencimento 10/11/2026, aberto (nº 18);Registrar baixa de 1.000,00 em 11/11/2026 (1 dia de atraso);Encargos 20,33;Encargos 20,33;Sim
+CT16;4;Título de 1.000,00 com vencimento 10/11/2026, aberto (nº 19);Registrar baixa de 1.000,00 em 10/12/2026 (30 dias de atraso);Encargos 29,90;Encargos 29,90;Sim
+CT17;4;Título de 1.000,00 com vencimento 10/11/2026, aberto (nº 20);Registrar baixa de 1.000,00 em 09/11/2026 (antes do vencimento);Encargos 0,00;Encargos 0,00;Sim
+CT18;4;Título de 1.000,00 com vencimento 10/11/2026, aberto (nº 32);Registrar baixa de 1.000,00 em 25/11/2026 (15 dias de atraso);Encargos 24,95;Encargos 24,95;Sim
+CT19;4;Título de 50,00 com vencimento 10/11/2026, aberto (nº 28);Registrar baixa de 50,00 em 20/11/2026 (10 dias de atraso, total exato 1,165);Encargos 1,17 (meio centavo para cima);Encargos 1,17;Sim
+CT20;4;Título a receber de 1.000,00 com vencimento 10/11/2026, aberto (nº 29);Registrar baixa parcial de 500,00 em 11/11/2026;Encargos 10,17 (sobre o valor da baixa), saldo 500,00, status parcial;Iguais ao esperado;Sim
+CT21;5;Título de 1.000,00 com vencimento 14/11/2026 (sábado), aberto (nº 25);Registrar baixa de 1.000,00 em 16/11/2026 (segunda-feira, data prorrogada);Encargos 0,00;Encargos 20,00 (mesmo defeito do CT14);Não
+CT22;5;Título de 1.000,00 com vencimento 14/11/2026 (sábado), aberto (nº 26);Registrar baixa de 1.000,00 em 17/11/2026;Encargos 20,33 (1 dia contado a partir da segunda);Encargos 20,33;Sim
+CT23;5;Título de 1.000,00 com vencimento 14/11/2026 (sábado), aberto (nº 30);Registrar baixa de 1.000,00 no próprio sábado 14/11/2026;Encargos 0,00;Encargos 0,00;Sim
+CT24;5;Título de 1.000,00 com vencimento 15/11/2026 (domingo), aberto (nº 27);Registrar baixa de 1.000,00 em 16/11/2026 (segunda-feira, data prorrogada);Encargos 0,00;Encargos 20,00 (mesmo defeito do CT14);Não
+CT25;5;Título de 1.000,00 com vencimento 15/11/2026 (domingo), aberto (nº 31);Registrar baixa de 1.000,00 em 17/11/2026;Encargos 20,33 (1 dia contado a partir da segunda);Encargos 20,33;Sim
+CT26;2 e 3;Título de 1.000,00, aberto (nº 21);Registrar baixa parcial de 400,00 em 09/11/2026;Saldo 600,00 e status parcial;Saldo 600,00 e status parcial;Sim
+CT27;2 e 3;Título nº 21 após o CT26 (saldo 600,00);Registrar baixa de 600,00 em 09/11/2026;Saldo 0,00 e status quitado;Saldo 0,00 e status quitado;Sim
+CT28;3;Título nº 21 quitado (após o CT27);Registrar baixa de 1,00;Baixa rejeitada;Baixa rejeitada (não registrada);Sim
+CT29;3;Título de 1.000,00, aberto (nº 22);Registrar baixa de 1.000,01 (maior que o saldo);Baixa rejeitada;Baixa aceita: saldo -0,01 e status parcial;Não
+CT30;3;Título de 1.000,00, aberto (nº 23);Registrar baixa de 0,00;Baixa rejeitada;Rejeitada com a mensagem O valor da baixa deve ser maior que zero.;Sim
+CT31;3;Título de 1.000,00, aberto (nº 23);Registrar baixa de -10,00;Baixa rejeitada;Baixa rejeitada (não registrada);Sim
+CT32;3;Título de 1.000,00 cancelado (nº 24);Registrar baixa de 100,00 em 09/11/2026;Baixa rejeitada: título cancelado não recebe baixa;Baixa aceita: saldo 900,00 e status mudou de cancelado para parcial;Não
